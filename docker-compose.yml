@@ -1,0 +1,51 @@
+services:
+  elasticsearch: # Log database
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node # only one Elasticsearch server
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m # memory usage config
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes: # mount volumes, where Docker creates dir on host to ensure data persists after restarting containers
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - elk
+
+  kibana: # UI for dashboards and logs
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk
+
+  logstash: # Receives & parses logs before sending to DB
+    image: docker.elastic.co/logstash/logstash:8.11.0
+    container_name: logstash
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    volumes: # ./ indicates bind mount, which mounts specified file/dir from host onto container
+      # Bind mounting suitable for config files, which require editing
+      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+    environment:
+      - xpack.monitoring.elasticsearch.hosts=http://elasticsearch:9200
+      - LOGSTASH_JAVA_OPTS=-Xms512m -Xmx512m
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+networks:
+  elk:
+    driver: bridge
+# Create volume and tell Docker to use local storage
+volumes: 
+  elasticsearch-data:
+    driver: local
