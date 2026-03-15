@@ -13,28 +13,13 @@ Log Sources -> Filebeat -> Logstash -> Elasticsearch -> Kibana
 - Dashboard showing security metrics
 - [Detection rules for suspicious activity]
 
-## Deployment Steps
+## Setup
 
 1. After cloning the repository, navigate to the directory and start all containers in detached mode:
 `docker-compose up -d`
  - You can use `docker-compose ps` to confirm the status of all containers are running.
 
 2. Since the ELK stack is running in version 8.11, install Filebeat 8.11, then navigate to the directory to configure `filebeat.yml`. Your config file should look like this to collect logs on your host PC:
- - ```
-    filebeat.inputs:
-    - type: log
-      enabled: true
-      paths:
-      - /var/log/system.log
-      - /var/log/install.log
- ```
- - ```
-    #output.elasticsearch:
-      #hosts: ["localhost:9200"]
-
-    output.logstash:
-      hosts: ["localhost:5044"]
- ```
 
 3. Test Filebeat configuration with `sudo ./filebeat test config`.
 
@@ -47,8 +32,49 @@ Log Sources -> Filebeat -> Logstash -> Elasticsearch -> Kibana
  - Create a data view: Name "logs", Index pattern "logs-*", Timestamp field "@timestamp"
  - You should now see logs appearing
 
-## Structure
+### Filebeat Configuration
 
+This configuration accepts two log inputs: system and install logs from your host PC, and application logs generated from the bash script `generate-logs.sh`.
+
+ ```
+    filebeat.inputs:
+    - type: log
+      enabled: true
+      paths:
+      - /var/log/system.log
+      - /var/log/install.log
+
+    # Custom log source - application logs from test-app
+    - type: log
+      enabled: true
+      paths:
+        - /Users/[put in the correct path to your generate app logs]/test-app/logs/app.log
+
+      # Add custom fields to identify this source
+      fields:
+        log_source: test_app
+        environment: development
+      fields_under_root: false
+
+      # Add tags to identify this source
+      tags: ["test-app", "custom"]
+
+      # Exclude DEBUG and INFO logs
+      exclude_lines: ['^\[.*\] \[DEBUG\]', '^\[.*\] \[INFO\]']
+
+      # Only include ERROR and WARN logs (Optional)
+      #include_lines: ['^\[.*\] \[ERROR\]', '^\[.*\] \[WARN\]']
+ ```
+ ```
+    #output.elasticsearch:
+      #hosts: ["localhost:9200"]
+
+    output.logstash:
+      hosts: ["localhost:5044"]
+ ```
+
+## Structure
+This section lays out the structure of the project directory and serves to explain the purpose of each file.
 
 ## Skills Learned
 - Docker containerization

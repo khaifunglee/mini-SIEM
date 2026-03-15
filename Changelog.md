@@ -12,12 +12,17 @@ This document aims to serve as my notes and a timeline of this project as I cont
 - Installed Filebeat and configured settings to connect to Logstash
 - Created data view on Kibana to verify basic system logs are being collected on host PC
 
-## Next Steps
-1. Enhance SIEM by simulating security-relevant activity
-  - Add a new log source to simulate application logs
-  - Configure Filebeat to read the log source (e.g add custom fields to identify the source)
+### 15-03-2026:
 
-2. Parse logs with Grok patterns to extract useful information from raw logs
+**Added Log Source**:
+- Added a new log source to simulate application logs by writing a bash script that generates log messages
+- Configured Filebeat to receive this log input and only include error and warning messages
+
+## Next Steps
+1. Get comfortable with Filebeat configuration
+  - Add processors to enrich and clean logs.
+
+2. Parse logs with Grok patterns in Logstash to extract useful information from raw logs
   - Add grok patterns to extract new fields
   - Add conditional logic to tag certain events
 
@@ -42,3 +47,7 @@ This document aims to serve as my notes and a timeline of this project as I cont
   - Follow principle of least privilege
   - Segregate networks by using isolated Docker networks
   - Rotate logs to avoid storage overflow
+  - Ensure no sensitive information is displayed in the repository
+
+7. Documentation
+  - Add Filebeat configuration in README for guidance
