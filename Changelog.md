@@ -12,15 +12,14 @@ This document aims to serve as my notes and a timeline of this project as I cont
 - Installed Filebeat and configured settings to connect to Logstash
 - Created data view on Kibana to verify basic system logs are being collected on host PC
 
-### 15-03-2026:
+### 16-03-2026:
 
 **Added Log Source**:
 - Added a new log source to simulate application logs by writing a bash script that generates log messages
 - Configured Filebeat to receive this log input and only include error and warning messages
+- Added processors to enrich and clean logs before sending to Logstash
 
 ## Next Steps
-1. Get comfortable with Filebeat configuration
-  - Add processors to enrich and clean logs.
 
 2. Parse logs with Grok patterns in Logstash to extract useful information from raw logs
   - Add grok patterns to extract new fields
