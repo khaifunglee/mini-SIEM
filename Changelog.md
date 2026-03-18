@@ -20,6 +20,8 @@ This document aims to serve as my notes and a timeline of this project as I cont
 - Added processors to enrich and clean logs before sending to Logstash
 
 ## Next Steps
+1. Add log sources
+  - Create a web server access log simulator (generate nginx-style access logs)
 
 2. Parse logs with Grok patterns in Logstash to extract useful information from raw logs
   - Add grok patterns to extract new fields
