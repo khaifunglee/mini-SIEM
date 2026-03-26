@@ -26,14 +26,19 @@ services:
       - elk
 
   logstash: # Receives & parses logs before sending to DB
-    image: docker.elastic.co/logstash/logstash:8.11.0
+    #image: docker.elastic.co/logstash/logstash:8.11.0
+
+    # Build a custom logstash image to avoid file mounting issues by baking config into image
+    build:
+      context: .
+      dockerfile: Dockerfile.logstash
     container_name: logstash
     ports:
       - "5044:5044"
       - "9600:9600"
-    volumes: # ./ indicates bind mount, which mounts specified file/dir from host onto container
-      # Bind mounting suitable for config files, which require editing
-      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+    #volumes: # ./ indicates bind mount, which mounts specified file/dir from host onto container
+    # Bind mounting suitable for config files, which require editing (read-only for best practice)
+    #- ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
     environment:
       - xpack.monitoring.elasticsearch.hosts=http://elasticsearch:9200
       - LOGSTASH_JAVA_OPTS=-Xms512m -Xmx512m

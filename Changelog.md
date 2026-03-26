@@ -19,6 +19,16 @@ This document aims to serve as my notes and a timeline of this project as I cont
 - Configured Filebeat to receive this log input and only include error and warning messages
 - Added processors to enrich and clean logs before sending to Logstash
 
+### 26-03-2026:
+
+**Added Grok Pattern and Conditional Logic Parsing in Logstash**:
+- Added two new log sources to simulate web access and authentication logs by writing bash scripts
+- Configured Filebeat to receive these log inputs 
+- Added grok patterns to parse each type of logs
+- Added conditional logic to further categorize logs by adding tags and fields for each log
+- Practiced KQL querying to verify successful log parsing in Kibana
+- Built a custom Docker logstash image to bake config into image due to file reading issues
+
 ## Next Steps
 1. Add log sources
   - Create a web server access log simulator (generate nginx-style access logs)

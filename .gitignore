@@ -1,2 +1,4 @@
 .DS_Store
 test-app/logs/app.log
+test-app/logs/auth.log
+test-app/logs/web-access.log

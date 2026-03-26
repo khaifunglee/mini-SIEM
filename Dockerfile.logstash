@@ -1,0 +1,9 @@
+FROM docker.elastic.co/logstash/logstash:8.11.0
+
+# Remove any default pipeline config
+RUN rm -f /usr/share/logstash/pipeline/logstash.conf
+
+# Copy our config file 
+COPY logstash/pipeline/logstash.conf /usr/share/logstash/pipeline/logstash.conf 
+
+USER logstash
