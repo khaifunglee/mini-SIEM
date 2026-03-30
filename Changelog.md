@@ -29,17 +29,19 @@ This document aims to serve as my notes and a timeline of this project as I cont
 - Practiced KQL querying to verify successful log parsing in Kibana
 - Built a custom Docker logstash image to bake config into image due to file reading issues
 
+### 30-03-2026:
+
+**Built a Professional Security Dashboard on Kibana**:
+- Created numerous visualizations such as a metric for critical alerts, line graph for security events timeline, stacked bar chart for user login attempts, etc.
+- Arranged them in a professional layout on Kibana. 
+
 ## Next Steps
-1. Add log sources
-  - Create a web server access log simulator (generate nginx-style access logs)
+1. Add more log sources
 
-2. Parse logs with Grok patterns in Logstash to extract useful information from raw logs
-  - Add grok patterns to extract new fields
-  - Add conditional logic to tag certain events
+2. Parse logs with more Grok patterns in Logstash to extract useful information from raw logs
 
-3. Build a professional security dashboard 
+3. Improve upon professional security dashboard 
   - Create more visualizations in Kibana
-  - E.g: Total events over time (Line Chart), Top client IPs (Bar Chart), HTTP response codes (Pie Chart), Failed vs Successful requests (Metric), Requests to sensitive paths (Data Table)
   - Practice KQL queries to find specific events
 
 4. Create detection rules to detect suspicious activity
