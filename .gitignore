@@ -2,3 +2,6 @@
 test-app/logs/app.log
 test-app/logs/auth.log
 test-app/logs/web-access.log
+test-app/generate-app-logs.sh
+test-app/generate-auth-logs.sh
+test-app/generate-web-logs.sh
