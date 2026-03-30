@@ -146,7 +146,23 @@ This configuration accepts four log inputs: system and install logs from your ho
  ```
 
 ## Structure
-This section lays out the structure of the project directory and serves to explain the purpose of each file.
+This section lays out the structure of the project directory at a high level and serves to explain the purpose of each file.
+```
+├── README.md                    # Main overview & changelog
+├── Changelog.md                 # Version history and project timeline
+├── Dockerfile.logstash          # Custom logstash image
+├── docker-compose.yml           # Docker config
+├── logstash/pipeline/           # Application source code
+│   └── logstash.conf            # Logstash config to parse logs
+├── logstash/pipeline/           # Application source code
+│   ├── generate-app-logs.sh     # Bash script for generating application logs
+│   ├── generate-auth-logs.sh    # Bash script for generating authentication logs
+│   ├── generate-web-logs.sh     # Bash script for generating web access logs
+│   └── logs/                    # Log directory
+│   │   ├── app.log              # Application log file location
+│   │   ├── auth.log             # Authentication log file location
+│   │   └── web-access.log       # Web access log file location
+```
 
 ## Skills Learned
 - Docker containerization
