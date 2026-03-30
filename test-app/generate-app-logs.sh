@@ -1,6 +1,6 @@
 # This script simulates a simple app generating events
 
-LOGFILE="$HOME/khaifungfreeman@gmail.com - Google Drive/My Drive/Projects/Cybersecurity/SIEM-project/test-app/logs/app.log"
+LOGFILE="$HOME/mini-SIEM/test-app/logs/app.log" # edit your path to the repo here
 # Array of log levels
 LEVELS=("INFO" "WARN" "ERROR" "DEBUG")
 # Array of messages

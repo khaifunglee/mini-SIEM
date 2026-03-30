@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script simulates a web page generating access logs
 
-LOGFILE="$HOME/khaifungfreeman@gmail.com - Google Drive/My Drive/Projects/Cybersecurity/SIEM-project/test-app/logs/web-access.log"
+LOGFILE="$HOME/mini-SIEM/test-app/logs/web-access.log" # edit your path to the repo here
 # Array of user agents
 USER_AGENTS=(
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"

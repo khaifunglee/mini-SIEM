@@ -1,6 +1,6 @@
 # This script simulates a simple app generating authentication events
 
-LOGFILE="$HOME/khaifungfreeman@gmail.com - Google Drive/My Drive/Projects/Cybersecurity/SIEM-project/test-app/logs/auth.log"
+LOGFILE="$HOME/mini-SIEM/test-app/logs/auth.log" # edit your path to the repo here
 # Array of usernames
 USERS=("admin" "root" "jack" "postgres" "backup" "external user")
 # Array of IP addresses
