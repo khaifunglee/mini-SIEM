@@ -36,8 +36,7 @@ This document aims to serve as my notes and a timeline of this project as I cont
 - Filtered and aggregated data to allow for visual analysis of security events
 - Arranged them in a cohesive layout on Kibana
 
-<img width="2880" height="3184" alt="image" src="https://github.com/user-attachments/assets/fb63b29d-2a1a-49a1-874d-67aaf5ba2474" />
-
+<img width="2880" height="3538" alt="image" src="https://github.com/user-attachments/assets/5d76ea3c-bd0a-481b-a614-1929ff62d5a6" />
 
 ## Next Steps
 ***1. Parse logs with more Grok patterns in Logstash to extract useful information from raw logs***
