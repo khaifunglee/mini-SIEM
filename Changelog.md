@@ -38,24 +38,29 @@ This document aims to serve as my notes and a timeline of this project as I cont
 
 <img width="2880" height="3538" alt="image" src="https://github.com/user-attachments/assets/5d76ea3c-bd0a-481b-a614-1929ff62d5a6" />
 
+### 01-04-2026:
+
+**Created Detection Rules on Kibana**:
+- Created practical detection rules by creating saved queries on Kibana
+- Set a threshold for each detection rule for manual detection
+- Created a secondary security detection dashboard to help conduct manual investigation workflows
+- Practiced threat hunting by searching for targeted queries (e.g tags: "sensitive_path", group by client_ip.keyword)
+
+Manual investigation workflow: 
+1. Click on suspicious value 
+2. Expand time range to "Last 24 hours"
+3. Look for patterns such as: same repeated username/client IP, time patterns, multiple critical security events
+4. Check for related events: search filtered queries such as client_ip : "203.xx" to further investigate
+
 ## Next Steps
-***1. Parse logs with more Grok patterns in Logstash to extract useful information from raw logs***
+**1. Create detection rules to detect suspicious activity**
+  - Add automated alerting by enabling Elasticsearch alerting features
 
-***2. Improve upon professional security dashboard***
-  - Create more visualizations in Kibana
-  - Practice KQL queries to find specific events
-
-***3. Create detection rules to detect suspicious activity***
-  - Create saved searches on Kibana
-  - E.g: Multiple 404 errors from the same IP, Access to admin paths, Unusual traffic volume
-  - Add alerting by enabling Elasticsearch alerting features
-
-***4. Add more log sources to add variety***
+**2. Add more log sources to add variety**
   - Add Docker container logs
-  - Simulate failed authentication attempts
   - Add a Cloud VM to enable distributed log collection
 
-***5. Follow security best practices (for production)***
+**3. Follow security best practices (for production)**
   - Enable authentication: `xpack.security.enabled=true`
   - Use HTTPS to encrypt traffic between components
   - Follow principle of least privilege
@@ -63,5 +68,6 @@ This document aims to serve as my notes and a timeline of this project as I cont
   - Rotate logs to avoid storage overflow
   - Ensure no sensitive information is displayed in the repository
 
-7. Documentation
+**4. Documentation**
   - Add Filebeat configuration in README for guidance
+  - Polish up documentation and test redeployment of environment
